@@ -1,33 +1,52 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 import "./FinancialSidebar.css";
+
+const BANKING_SUB_ITEMS = [
+  { id: "bank-accounts", label: "Bank Accounts", path: "/financial-core/bank-accounts" },
+  { id: "wallets", label: "Wallets", path: "/financial-core/wallets" },
+  { id: "reconciliation", label: "Reconciliation", path: "/financial-core/reconciliation" },
+  { id: "bank-rules", label: "Bank Rules", path: "/financial-core/bank-rules" },
+  { id: "upload-statements", label: "Upload Statements", path: "/financial-core/upload-statements" },
+];
+
+const ROUTE_MAP = {
+  dashboard: "/financial-core",
+  transactions: "/financial-core/transactions",
+  sales: "/financial-core/sales",
+  purchases: "/financial-core/purchases",
+};
 
 export default function FinancialSidebar({ onLogout, isDarkMode, activePage = "dashboard" }) {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isBankingPath = BANKING_SUB_ITEMS.some((s) => location.pathname === s.path);
+  const [bankingOpen, setBankingOpen] = useState(isBankingPath);
   const [activeItem, setActiveItem] = useState(activePage);
 
-  // Update active item when activePage prop changes
   React.useEffect(() => {
     setActiveItem(activePage);
   }, [activePage]);
 
-  const handleBackToMain = () => {
-    navigate("/overview");
-  };
+  React.useEffect(() => {
+    if (isBankingPath) setBankingOpen(true);
+  }, [location.pathname]);
+
+  const handleBackToMain = () => navigate("/overview");
 
   const handleItemClick = (itemId) => {
-    setActiveItem(itemId);
-    // Navigate to the appropriate route
-    if (itemId === 'transactions') {
-      navigate('/financial-core/transactions');
-    } else if (itemId === 'dashboard') {
-      navigate('/financial-core');
-    } else if (itemId === 'sales') {
-      navigate('/financial-core/sales');
-    } else if (itemId === 'purchases') {
-      navigate('/financial-core/purchases');
+    if (itemId === "banking") {
+      setBankingOpen((prev) => !prev);
+      return;
     }
-    // Add more navigation logic for other pages as needed
+    setActiveItem(itemId);
+    if (ROUTE_MAP[itemId]) navigate(ROUTE_MAP[itemId]);
+  };
+
+  const handleSubItemClick = (path) => {
+    navigate(path);
   };
 
   const menuItems = [
@@ -35,7 +54,7 @@ export default function FinancialSidebar({ onLogout, isDarkMode, activePage = "d
     { id: "transactions", label: "Transactions", icon: "transactions" },
     { id: "sales", label: "Sales", icon: "sales" },
     { id: "purchases", label: "Purchases", icon: "purchases" },
-    { id: "banking", label: "Banking & Wallets", icon: "banking" },
+    { id: "banking", label: "Banking & Wallets", icon: "banking", hasDropdown: true },
     { id: "expenses", label: "Expenses & Payroll", icon: "expenses" },
     { id: "reports", label: "Reports & Insights", icon: "reports" },
     { id: "setup", label: "Setup & Control", icon: "setup" },
@@ -133,36 +152,64 @@ export default function FinancialSidebar({ onLogout, isDarkMode, activePage = "d
   };
 
   return (
-    <aside className={`financial-sidebar ${isDarkMode ? 'dark-mode' : ''}`}>
+    <aside className={`financial-sidebar ${isDarkMode ? "dark-mode" : ""}`}>
       {/* Header with Back Button */}
       <div className="financial-sidebar-header">
         <button className="back-button" onClick={handleBackToMain}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7.99992 12.6667L3.33325 8.00001L7.99992 3.33334" stroke="#4A5565" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.6666 8H3.33325" stroke="#4A5565" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-          <span>Back to Emireq Investor</span>
+            <path d="M7.99992 12.6667L3.33325 8.00001L7.99992 3.33334" stroke="#4A5565" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12.6666 8H3.33325" stroke="#4A5565" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span>Back to Dashboard</span>
         </button>
       </div>
 
       {/* Title Section */}
       <div className="financial-sidebar-title">
         <h2>Financial Core</h2>
-        <p>Financial intelligence & compliance</p>
+        <p>Financial intelligence &amp; compliance</p>
       </div>
 
       {/* Menu Items */}
       <nav className="financial-sidebar-nav">
         {menuItems.map((item) => (
-          <button
-            key={item.id}
-            className={`financial-nav-item ${activeItem === item.id ? "active" : ""}`}
-            onClick={() => handleItemClick(item.id)}
-          >
-            <span className="nav-item-icon">{getIcon(item.icon)}</span>
-            <span className="nav-item-label">{item.label}</span>
-          </button>
+          <React.Fragment key={item.id}>
+            <button
+              className={`financial-nav-item ${
+                item.id === "banking"
+                  ? isBankingPath || bankingOpen
+                    ? "active"
+                    : ""
+                  : activeItem === item.id
+                  ? "active"
+                  : ""
+              }`}
+              onClick={() => handleItemClick(item.id)}
+            >
+              <span className="nav-item-icon">{getIcon(item.icon)}</span>
+              <span className="nav-item-label">{item.label}</span>
+              {item.hasDropdown && (
+                <span className="nav-item-chevron">
+                  {bankingOpen ? <FiChevronUp size={14} /> : <FiChevronDown size={14} />}
+                </span>
+              )}
+            </button>
+
+            {/* Banking sub-menu */}
+            {item.id === "banking" && bankingOpen && (
+              <div className="banking-submenu">
+                {BANKING_SUB_ITEMS.map((sub) => (
+                  <button
+                    key={sub.id}
+                    className={`banking-sub-item ${location.pathname === sub.path ? "active" : ""}`}
+                    onClick={() => handleSubItemClick(sub.path)}
+                  >
+                    {sub.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </React.Fragment>
         ))}
       </nav>
 

@@ -96,6 +96,13 @@
   background-color: #f9fafb;
 }
 
+.financial-nav-item .nav-item-chevron {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
 .financial-nav-item.active {
   background-color: #ffc300;
   font-weight: 500;
@@ -399,4 +406,41 @@
 .financial-sidebar.dark-mode .financial-nav-item:focus-visible,
 .financial-sidebar.dark-mode .logout-button:focus-visible {
   outline-color: #60a5fa;
+}
+
+/* Banking Sub-menu */
+.banking-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 14px;
+  border-left: 2px solid #e5e7eb;
+  margin: 2px 14px 2px 38px;
+}
+
+.banking-sub-item {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  color: #6a7282;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.banking-sub-item:hover {
+  background-color: #f9fafb;
+  color: #121212;
+}
+
+.banking-sub-item.active {
+  background-color: #f9fafb;
+  color: #121212;
+  font-weight: 500;
 }

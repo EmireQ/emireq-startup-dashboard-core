@@ -1,0 +1,667 @@
+/* Bank Accounts Page Layout */
+.bank-accounts-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f9fafb;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+.bank-accounts-main {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: #f9fafb;
+}
+
+.bank-accounts-content {
+  flex: 1;
+  padding: 24px 28px;
+  background: #f9fafb;
+}
+
+/* Page Header */
+.ba-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ba-page-header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #121212;
+  line-height: 1.3;
+}
+
+.ba-page-header p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #6a7282;
+}
+
+.ba-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: #121212;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ba-add-btn:hover {
+  background: #2d2d2d;
+}
+
+/* Stats Grid */
+.ba-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ba-stat-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.ba-stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.ba-stat-label {
+  font-size: 12px;
+  color: #6a7282;
+  font-weight: 400;
+}
+
+.ba-stat-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ba-stat-icon--blue { background: #eff6ff; color: #3b82f6; }
+.ba-stat-icon--green { background: #f0fdf4; color: #16a34a; }
+.ba-stat-icon--purple { background: #f5f3ff; color: #7c3aed; }
+.ba-stat-icon--orange { background: #fff7ed; color: #ea580c; }
+
+.ba-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #121212;
+  line-height: 1.2;
+}
+
+.ba-stat-sub {
+  font-size: 12px;
+  color: #6a7282;
+}
+
+.ba-stat-sub.green {
+  color: #16a34a;
+}
+
+/* Toolbar wrapper (card background) */
+.ba-toolbar-wrapper {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Toolbar */
+.ba-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  flex-wrap: wrap;
+}
+
+.ba-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.ba-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.ba-search-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px 0 34px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #121212;
+  background: #fff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.ba-search-input:focus {
+  border-color: #ffc300;
+}
+
+.ba-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.ba-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.ba-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ba-select {
+  appearance: none;
+  height: 36px;
+  padding: 0 30px 0 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #374151;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ba-select:hover {
+  border-color: #d1d5db;
+}
+
+.ba-select-chevron {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: #6b7280;
+}
+
+.ba-view-toggle {
+  display: flex;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ba-view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ba-view-btn:first-child {
+  border-right: 1px solid #e5e7eb;
+}
+
+.ba-view-btn.active {
+  background: #f9fafb;
+  color: #121212;
+}
+
+.ba-view-btn:hover:not(.active) {
+  background: #f9fafb;
+}
+
+/* Account Cards Grid */
+.ba-accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.ba-accounts-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+/* Individual Account Card */
+.ba-account-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: box-shadow 0.2s, transform 0.15s;
+  cursor: pointer;
+  background: #fff;
+}
+
+.ba-account-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.ba-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.ba-card-icon {
+  width: 36px;
+  height: 36px;
+  background: #eff6ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b82f6;
+}
+
+.ba-card-status {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.ba-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #121212;
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+.ba-card-bank {
+  font-size: 12px;
+  color: #6a7282;
+  margin-bottom: 10px;
+}
+
+.ba-card-balance-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #9ca3af;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.ba-card-balance {
+  font-size: 20px;
+  font-weight: 700;
+  color: #121212;
+  margin-bottom: 12px;
+}
+
+.ba-card-balance.negative {
+  color: #ef4444;
+}
+
+.ba-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.ba-view-transactions {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #f59e0b;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.ba-view-transactions:hover {
+  color: #d97706;
+}
+
+.ba-refresh-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ba-refresh-btn:hover {
+  background: #f3f4f6;
+  color: #3b82f6;
+}
+
+/* Footer Note */
+.ba-footer-note {
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+  padding: 14px 16px;
+  border-top: 1px solid #f3f4f6;
+}
+
+/* List View Card */
+.ba-accounts-grid.list-view .ba-account-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+}
+
+.ba-accounts-grid.list-view .ba-card-header {
+  flex-shrink: 0;
+  margin-bottom: 0;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.ba-accounts-grid.list-view .ba-card-balance-label {
+  display: none;
+}
+
+.ba-accounts-grid.list-view .ba-card-balance {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.ba-accounts-grid.list-view .ba-card-name {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.ba-accounts-grid.list-view .ba-card-footer {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  margin-left: auto;
+  gap: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+  .ba-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ba-accounts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .bank-accounts-main {
+    margin-left: 220px;
+  }
+
+  .bank-accounts-content {
+    padding: 20px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bank-accounts-main {
+    margin-left: 0;
+  }
+
+  .bank-accounts-content {
+    padding: 16px;
+  }
+
+  .ba-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .ba-accounts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ba-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ba-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ba-filters {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .ba-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================= */
+/* Dark Mode                      */
+/* ============================= */
+.bank-accounts-page.dark-mode {
+  background: #0a0a0a;
+}
+
+.bank-accounts-page.dark-mode .bank-accounts-main {
+  background: #0a0a0a;
+}
+
+.bank-accounts-page.dark-mode .bank-accounts-content {
+  background: #0a0a0a;
+}
+
+/* Page header */
+.bank-accounts-page.dark-mode .ba-page-header h1 {
+  color: #f9fafb;
+}
+
+.bank-accounts-page.dark-mode .ba-page-header p {
+  color: #9ca3af;
+}
+
+.bank-accounts-page.dark-mode .ba-add-btn {
+  background: #1f2937;
+  color: #f9fafb;
+  border: 1px solid #374151;
+}
+
+.bank-accounts-page.dark-mode .ba-add-btn:hover {
+  background: #374151;
+}
+
+/* Stat cards */
+.bank-accounts-page.dark-mode .ba-stat-card {
+  background: #111827;
+  border-color: #1f2937;
+}
+
+.bank-accounts-page.dark-mode .ba-stat-label {
+  color: #9ca3af;
+}
+
+.bank-accounts-page.dark-mode .ba-stat-value {
+  color: #f9fafb;
+}
+
+.bank-accounts-page.dark-mode .ba-stat-sub {
+  color: #6b7280;
+}
+
+.bank-accounts-page.dark-mode .ba-stat-sub.green {
+  color: #4ade80;
+}
+
+/* Toolbar wrapper */
+.bank-accounts-page.dark-mode .ba-toolbar-wrapper {
+  background: #111827;
+  border-color: #1f2937;
+}
+
+.bank-accounts-page.dark-mode .ba-toolbar {
+  border-bottom-color: #1f2937;
+}
+
+/* Search */
+.bank-accounts-page.dark-mode .ba-search-input {
+  background: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+.bank-accounts-page.dark-mode .ba-search-input::placeholder {
+  color: #6b7280;
+}
+
+.bank-accounts-page.dark-mode .ba-search-input:focus {
+  border-color: #ffc300;
+}
+
+.bank-accounts-page.dark-mode .ba-search-icon {
+  color: #6b7280;
+}
+
+/* Selects */
+.bank-accounts-page.dark-mode .ba-select {
+  background: #1f2937;
+  border-color: #374151;
+  color: #d1d5db;
+}
+
+.bank-accounts-page.dark-mode .ba-select-chevron {
+  color: #9ca3af;
+}
+
+/* View toggle */
+.bank-accounts-page.dark-mode .ba-view-toggle {
+  border-color: #374151;
+}
+
+.bank-accounts-page.dark-mode .ba-view-btn {
+  background: #1f2937;
+  color: #9ca3af;
+  border-color: #374151;
+}
+
+.bank-accounts-page.dark-mode .ba-view-btn:first-child {
+  border-right-color: #374151;
+}
+
+.bank-accounts-page.dark-mode .ba-view-btn.active {
+  background: #374151;
+  color: #f9fafb;
+}
+
+.bank-accounts-page.dark-mode .ba-view-btn:hover:not(.active) {
+  background: #2d3748;
+  color: #f9fafb;
+}
+
+/* Account cards */
+.bank-accounts-page.dark-mode .ba-account-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.bank-accounts-page.dark-mode .ba-account-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border-color: #4b5563;
+}
+
+.bank-accounts-page.dark-mode .ba-card-icon {
+  background: #1e3a5f;
+  color: #60a5fa;
+}
+
+.bank-accounts-page.dark-mode .ba-card-status {
+  background: #14532d;
+  color: #4ade80;
+}
+
+.bank-accounts-page.dark-mode .ba-card-name {
+  color: #f9fafb;
+}
+
+.bank-accounts-page.dark-mode .ba-card-bank {
+  color: #9ca3af;
+}
+
+.bank-accounts-page.dark-mode .ba-card-balance-label {
+  color: #6b7280;
+}
+
+.bank-accounts-page.dark-mode .ba-card-balance {
+  color: #f9fafb;
+}
+
+.bank-accounts-page.dark-mode .ba-card-footer {
+  border-top-color: #374151;
+}
+
+.bank-accounts-page.dark-mode .ba-refresh-btn:hover {
+  background: #374151;
+  color: #60a5fa;
+}
+
+/* Footer note */
+.bank-accounts-page.dark-mode .ba-footer-note {
+  border-top-color: #1f2937;
+  color: #6b7280;
+}

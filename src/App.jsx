@@ -22,6 +22,8 @@ import TransactionsPage from "./pages/financial-core/TransactionsPage";
 import SalesPage from "./pages/financial-core/SalesPage";
 import PurchasesPage from "./pages/financial-core/PurchasesPage";
 import InvoiceDetailView from "./pages/financial-core/InvoiceDetailView";
+import BankAccountsPage from "./pages/financial-core/BankAccountsPage";
+import WalletsPage from "./pages/financial-core/WalletsPage";
 import MessagesPage from "./pages/messages/MessagesPage";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -210,6 +212,8 @@ function AppContent() {
           />
           <Route path="/financial-core/sales" element={<SalesPage />} />
           <Route path="/financial-core/purchases" element={<PurchasesPage />} />
+          <Route path="/financial-core/bank-accounts" element={<BankAccountsPage />} />
+          <Route path="/financial-core/wallets" element={<WalletsPage />} />
           <Route
             path="/financial-core/invoices/:invoiceId"
             element={<InvoiceDetailView />}
