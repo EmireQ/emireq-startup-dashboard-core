@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CustomerListView.css';
+import { getCustomersData } from '../../apiCalls/salesAPI/salesAPICall';
+import { LIST_CUSTOMERS } from '../../services/endPoints';
 
 export default function CustomerListView({ onSelectCustomer, isDarkMode, tabs, activeTab, onTabChange }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -99,6 +101,16 @@ export default function CustomerListView({ onSelectCustomer, isDarkMode, tabs, a
     
     return matchesSearch && matchesType && matchesCurrency && matchesBalance;
   });
+
+  
+  useEffect(() => {
+    handleGetCustomersData();
+  }, []);
+
+  const handleGetCustomersData = async () => {
+    const response = await getCustomersData(LIST_CUSTOMERS);
+    console.log(response);
+  };
 
   return (
     <div className={`customer-list-view ${isDarkMode ? 'dark-mode' : ''}`}>

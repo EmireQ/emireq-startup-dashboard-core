@@ -1,11 +1,9 @@
 import { hideLoader, showLoader } from "../../redux/reducers/loaderSlice";
 import { dispatch } from "../../redux/store";
-// import { BASE_URL } from "../../services/endPoints";
+import { BASE_URL } from "../../services/endPoints";
 import { token } from "../../utils/utils";
 
-const BASE_URL = "https://app.emireq.com/api"
-
-async function postData(url, payload, isToken) {
+async function postData(url, payload, isToken = false) {
   try {
     dispatch(showLoader());
 
@@ -55,16 +53,4 @@ const getData = async (url) => {
   }
 };
 
-export const loginStartup = (url, payload) => postData(url, payload);
-
-export const registerStartup = (url, payload) => postData(url, payload);
-
-export const getPreview = (url, payload, isToken) =>
-  postData(url, payload, isToken);
-
-export const getProfileData = (url) => getData(url);
-
-export const onboardingStep = (url, payload, isToken) =>
-  postData(url, payload, isToken);
-
-export const getSubcriptionProvider = (url) => getData(url);
+export const getJournalList = (url) => getData(url);
