@@ -1238,17 +1238,9 @@
 }
 
 [data-theme="dark"] .messages-focus-tag:hover {
-  background-color: #1e3a8a;
-  border-color: #2563eb;
-}
-  background-color: #1e3a8a;
-  color: #3b82f6;
-  border-color: #1e40af;
-}
-
-[data-theme="dark"] .messages-focus-tag:hover {
   background-color: #3b82f6;
   color: white;
+  border-color: #2563eb;
 }
 
 /* ============================= */
