@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
 import emireqLogo from "../../assets/emireq-logo.png";
 import "./Login.css";
 import { loginStartup } from "../../apiCalls/startupAPI/startupAPICall";
@@ -64,6 +65,34 @@ const Login = () => {
     console.log(`Logging in with ${provider}`);
     // Implement social login logic here
   };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google Access Token:", tokenResponse.access_token);
+
+      // // 🔥 Send this token to backend
+      // const payload = {
+      //   token: tokenResponse.access_token,
+      // };
+
+      // try {
+      //   const response = await loginStartup("/google-login", payload); // create this API
+
+      //   if (!response.ok) {
+      //     setIsloginError(true);
+      //     setIsLoading(false);
+      //   } else {
+      //     sessionStorage.setItem("startup_token", response.token);
+      //     setShowSuccessModal(true);
+      //   }
+      // } catch (err) {
+      //   console.error(err);
+      // }
+    },
+    onError: () => {
+      console.log("Google Login Failed");
+    },
+  });
 
   const GoogleIcon = () => (
     <svg
@@ -350,7 +379,7 @@ const Login = () => {
               <button
                 type="button"
                 className="btn-social btn-google"
-                onClick={() => handleSocialLogin("google")}
+                onClick={() => googleLogin()}
               >
                 <GoogleIcon />
                 <span>Register with Google</span>
