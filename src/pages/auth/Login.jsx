@@ -214,7 +214,9 @@ const Login = () => {
       <div className="login-left">
         <div className="login-form-wrapper">
           <div className="login-logo">
-            <img src={emireqLogo} alt="Emireq Logo" className="logo-image" />
+            <a href="https://emireq.com/">
+              <img src={emireqLogo} alt="Emireq Logo" className="logo-image" />
+            </a>
           </div>
 
           <div className="login-content">

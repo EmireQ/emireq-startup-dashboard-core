@@ -296,12 +296,9 @@ const Register = () => {
       <div className="register-left">
         <div className="register-form-wrapper">
           <div className="register-logo">
-            <img
-              src={emireqLogo}
-              alt="Emireq Logo"
-              className="logo-image"
-              onClick={() => navigate("/")}
-            />
+            <a href="https://emireq.com/">
+              <img src={emireqLogo} alt="Emireq Logo" className="logo-image" />
+            </a>
           </div>
 
           <div className="register-content">
